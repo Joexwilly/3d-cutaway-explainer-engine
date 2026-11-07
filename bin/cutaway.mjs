@@ -80,7 +80,8 @@ const cmds = {
     const c = path.join(ws, "cutaway.json");
     if (!fs.existsSync(c)) fs.writeFileSync(c, JSON.stringify({voice_id: null, handle: null, setting: "yard"}, null, 2) + "\n");
     const g = path.join(ws, ".gitignore"); if (!fs.existsSync(g)) fs.writeFileSync(g, ".cutaway/\nnode_modules\noutput/review/\n");
-    if (rest.includes("--example")) fs.cpSync(path.join(SKILL, "examples/foundation"), path.join(ws, "stories/foundation"), {recursive: true});
+    const ex = rest.find((r) => r.startsWith("--example"));
+    if (ex) {const name = ex.split("=")[1] || "foundation"; if (!fs.existsSync(path.join(SKILL, "examples", name))) die(`No example ${name}`); fs.cpSync(path.join(SKILL, "examples", name), path.join(ws, "stories", name), {recursive: true});}
     sync(ws); console.log(`Workspace ready at ${ws}. Set voice_id and handle in cutaway.json.`);
   },
   new(slug, title, noun, seconds = "70") {
@@ -98,6 +99,15 @@ const cmds = {
   voice(slug, ...rest) { const ws = findWS(); run(process.execPath, [path.join(SKILL, "scripts/tts.mjs"), slug, ...rest], {cwd: ws}); sync(ws); },
   sfx(slug) { const ws = findWS(); run(PY, ["-I", path.join(SKILL, "scripts/gen_sfx.py"), slug], {cwd: ws}); sync(ws); },
   check() { const ws = findWS(); sync(ws); run(path.join(RT, "node_modules/.bin/tsc"), ["-p", path.join(ws, ".cutaway/tsconfig.json")], {cwd: RT}); console.log("TYPES OK"); },
+  labels(slug, ...rest) {
+    const ws = findWS(); sync(ws);
+    const plan = path.join(ws, "stories", slug, "plan.ts"), out = path.join(ws, ".cutaway/labels.cjs");
+    if (!fs.existsSync(plan)) die(`${plan} not found. Keep shots and LABELS in plan.ts.`);
+    const seconds = JSON.parse(fs.readFileSync(path.join(ws, "stories", slug, "data/story.json"), "utf8")).seconds;
+    const e = {...env, NODE_PATH: path.join(RT, "node_modules"), CUTAWAY_SECONDS: String(seconds), CUTAWAY_PLAN: plan};
+    run(path.join(RT, "node_modules/.bin/esbuild"), [path.join(SKILL, "scripts/labels.ts"), "--bundle", "--platform=node", "--format=cjs", "--log-level=error", `--alias:@plan=${plan}`, `--alias:@engine=${path.join(ws, ".cutaway/engine")}`, `--outfile=${out}`], {env: e});
+    run(process.execPath, [out, ...rest], {env: e});
+  },
   stills(slug, frames, cols = "6") {
     const ws = findWS(); sync(ws); const dir = path.join(ws, "output/review"); fs.mkdirSync(dir, {recursive: true});
     const bundle = path.join(ws, ".cutaway/bundle");
@@ -113,5 +123,5 @@ const cmds = {
   },
 };
 const [c, ...a] = process.argv.slice(2);
-if (!cmds[c]) die("Commands: setup, doctor, init <folder> [--example], new, lint, voice, sfx, check, stills, render");
+if (!cmds[c]) die("Commands: setup, doctor, init <folder> [--example[=name]], new, lint, voice, sfx, check, labels <slug> [--fix], stills, render");
 cmds[c](...a);

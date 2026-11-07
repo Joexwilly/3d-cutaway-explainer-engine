@@ -18,7 +18,7 @@ Run `cutaway doctor`. If it does not print `READY`, follow [references/install.m
 Then ask the user these questions before creating a workspace, unless they already answered:
 1. **Which folder should this work in?** Run `cutaway init <folder>`.
 2. **What voice?** A Fish Audio voice ID, or their own recording. Save the ID as `voice_id` in `cutaway.json`. Use `"default"` only if they ask for the account default. For a recording, use `cutaway voice <slug> --file my.wav` after timing the read to the script.
-3. **Should a handle or brand appear on an object in the world?** Save it as `handle` in `cutaway.json`, or leave it `null`. Put it on a `Plaque` on a hero prop, never as a screen overlay.
+3. **Should a handle or brand appear on an object in the world?** Save it as `handle` in `cutaway.json`, or leave it `null`. Burn it into a real prop, such as a wooden crate, as in `examples/well/`. A sign panel reads as an ad. Keep the prop clear of the caption band, and never use a screen overlay.
 
 Never ask the user to paste a key into chat. Point them to `~/.config/3d-cutaway-explainer/.env`.
 
@@ -27,7 +27,7 @@ Never ask the user to paste a key into chat. Point them to `~/.config/3d-cutaway
 Work through these gates in order. Do not render past a failed gate.
 
 ### 1. Story
-Read [references/story.md](references/story.md), and [references/topics.md](references/topics.md) for anything that is not a physical build. Then:
+Read [references/story.md](references/story.md) and [references/topics.md](references/topics.md). Check real demand for the topic before writing, using the method in `topics.md`. Then:
 ```
 cutaway new <slug> "How a X Becomes a Y" "y"
 ```
@@ -40,16 +40,16 @@ cutaway voice <slug>
 This fits the voice to `seconds` and writes `data/words.json`. All later timing comes from it.
 
 ### 3. Shot plan
-Read [references/camera.md](references/camera.md). Write the `shots` array in `Film.tsx`, using only `hero`, `section`, `macro`, `low` and `orbit`. Start and end on `hero`. Give detail shots a `focus` point. `lintCamera` throws before any frame renders if the plan breaks a rule.
+Read [references/camera.md](references/camera.md). Write the `shots` array in `plan.ts`, using only `hero`, `section`, `macro`, `low` and `orbit`. Start and end on `hero`. Give detail shots a `focus` point. `lintCamera` throws before any frame renders if the plan breaks a rule.
 
 ### 4. World
-Read [references/world.md](references/world.md). Build props in `stories/<slug>/World.tsx`, importing the engine from `@engine/...`. Every state is a pure function of `t`. Every timing goes in `cues.ts`, anchored to spoken words. Run `cutaway check` to catch type errors.
+Read [references/world.md](references/world.md) and [references/kit.md](references/kit.md). Build props in `stories/<slug>/World.tsx`, importing the engine from `@engine/...`. Use kit characters and effects, not capsule figures. Every state is a pure function of `t`. Every timing goes in `cues.ts`, anchored to spoken words. Put labels in `LABELS` in `plan.ts`, one per line. Run `cutaway check` to catch type errors, then `cutaway labels <slug> --fix`. `lintLabels` throws before any frame renders if a label leaves the safe area in any frame.
 
 ### 5. Stills review
 ```
 cutaway stills <slug> "f1 f2 f3 ..." 6
 ```
-Use one frame per shot and one per beat. Read the sheet yourself and compare it with `assets/examples/`. Fix everything on the checklist in [references/world.md](references/world.md).
+Use one frame per shot and one per beat. Read the sheet yourself and compare it with `assets/examples/`. Fix everything on the checklist in [references/world.md](references/world.md), then sheet again. Expect at least two rounds. Rerun `cutaway labels <slug> --fix` after any camera change.
 
 ### 6. Sound
 Read [references/sound.md](references/sound.md). Write `stories/<slug>/data/sfx.json`, then run `cutaway sfx <slug>`. Aim for 100 to 190 events a minute at -19 dB against the voice. You cannot hear the result, so tell the user it needs a listening pass.
@@ -58,7 +58,7 @@ Read [references/sound.md](references/sound.md). Write `stories/<slug>/data/sfx.
 ```
 cutaway render <slug>
 ```
-This reruns the story lint, renders to `output/<slug>.mp4`, then runs QC. A failed check means fix and render again. Never weaken a threshold to pass.
+This reruns the story lint, renders to `output/<slug>.mp4`, then runs QC. A failed check means fix and render again. Never weaken a threshold to pass. Pull a few frames from the finished MP4 and read them before reporting.
 
 ### 8. Report
 Give the file path, the QC result, what you could not verify, and what still falls short.

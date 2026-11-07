@@ -18,6 +18,9 @@ Measured by separating voice from effects on 15 reels. An agent cannot hear thes
 - **Character over realism.** Comments describe one reel as "Crossy Road sounds". Sounds are light and game-like, with pitched wobbles and beeps.
 - **Dings mark wins.** Use `ding` at 1314 or 1970 Hz, a 3:2 ratio, on labels and successful fixes.
 
+## Listen for
+The reels so far ran 119 to 153 events a minute. Over 140 can feel busy during long action, so ask about it in the listening pass.
+
 ## Sound names
 `tick`, `click`, `blip`, `ding`, `wobble`, `swell`, `thump`, `clank`, `pour`, `creak`, `snap`, plus `patter`.
 

@@ -2,6 +2,27 @@
 
 The format works for any system that exists because something kept failing. A topic qualifies if you can name a crude first version and at least four real failures that forced a fix.
 
+## Check demand first
+Do this before writing, and tell the user the result.
+
+1. Search short videos for the plain topic, sorted by views.
+2. Record the top view counts. Several results over 10M is strong demand.
+3. Search the exact format, "How a X Becomes a Y". Low views mean the format is open. Moderate views mean it has been tested.
+4. Note what the top results are. Real-world builds prove the topic, not this animated style, so say so.
+5. Score it for this format: can the whole story show in one cross-section, and are there people doing visible work?
+
+No topic is guaranteed to go viral. Report the evidence and never promise views.
+
+Never reuse a topic a channel you are studying has already made, even if it was their best. Find the closest original with the same trigger.
+
+Three films made this way:
+
+| Topic | Demand found | Why it fit |
+|---|---|---|
+| Snowdrift to igloo | 50M, 32M, 25M, 13M | Survival stakes, open format |
+| Dirt pile to castle | 20M, format tested at 401K | Named history, one great story |
+| Muddy hole to water well | 57M, 24M, 21M, 9.6M | Vertical cross-section, lots of visible work |
+
 ## Good lanes
 | Lane | Example title | Crude start |
 |---|---|---|

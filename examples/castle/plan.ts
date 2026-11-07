@@ -1,0 +1,57 @@
+import {hero, low, macro, orbit, section, type Shot, type V3} from "@engine/CameraRig";
+import T, {MINE} from "./cues";
+
+const C: V3 = [0.4, -0.4, 0];
+export const shots: Shot[] = [
+  {start: 0, from: hero([0.2, 0.1, 0], 9.5), moves: [{at: T.raiders - 0.2, to: hero([2.2, -0.2, 0], 14)}]},
+  {start: T.cStab, from: low([1.2, 0.2, 0], 8.5)},
+  {start: T.cDitch, from: hero([0.8, -0.7, 0], 20), moves: [{at: T.throw, to: hero(C, 21)}]},
+  {start: T.cMotte, from: section([0, -0.5, 0], 24)},
+  {start: T.cFire, from: hero(C, 20), moves: [{at: T.fire - 0.15, to: orbit([1.4, 1.4, 2.4], {yaw: 26, pitch: 16, dist: 12})}]},
+  {start: T.cStone, from: hero(C, 22)},
+  {start: T.cKeep, from: low([0.2, 1.4, 0], 20)},
+  {start: T.cRam, from: orbit([6, 0.5, 0], {yaw: 54, pitch: 14, dist: 13})},
+  {start: T.cGate, from: section([3.8, 1.1, 0], 8.5, {focus: [4.4, 2.8, 0]}), moves: [{at: T.holes - 0.3, to: section([3.8, 1.2, 0], 7.5)}]},
+  {start: T.cMine, from: section([3, -0.6, MINE], 14), moves: [{at: T.prop - 0.2, to: section([3.5, -0.2, MINE], 10)}]},
+  {start: T.cRoch, from: hero(C, 18), moves: [{at: T.corner - 0.5, to: orbit([2.6, 0.9, 2.6], {yaw: 34, pitch: 15, dist: 13})}]},
+  {start: T.cPigs, from: macro([2.8, -0.2, 6.2], 7, {focus: [2.8, 0.9, 6.2]})},
+  {start: T.cRound, from: hero(C, 21)},
+  {start: T.cTower, from: orbit([3.6, 1.6, 3.6], {yaw: 40, pitch: 14, dist: 9, focus: [3.6, 3.7, 3.6]})},
+  {start: T.cWhy, from: low(C, 22)},
+  {start: T.cLadder, from: orbit([0, 0.9, 3.8], {yaw: 14, pitch: 10, dist: 12})},
+  {start: T.cWalk, from: orbit([1.4, 1.5, 3.9], {yaw: 42, pitch: 4, dist: 8.5, focus: [1.4, 3.2, 3.9]})},
+  {start: T.cBreach, from: hero(C, 18)},
+  {start: T.cInner, from: hero(C, 21)},
+  {start: T.cArch, from: section([3.1, 1.3, -1.6], 15)},
+  {start: T.cConc, from: orbit(C, {yaw: 30, pitch: 30, dist: 22})},
+  {start: T.cAdd, from: hero([2.2, -1.8, 0], 32)},
+  {start: T.cEnd, from: hero([2.2, -1.8, 0], 32)},
+];
+
+export const LABELS: {text: string; color: string; position: V3; height: number; at: number; until: number}[] = [
+  {text: "RAIDERS", color: "#FB7B5C", position: [1.1, 2.6, 0], height: 0.4, at: T.raiders, until: T.cStab},
+  {text: "MOTTE", color: "#F4E58E", position: [0, 3.6, -0.1], height: 0.8, at: T.motte, until: T.cFire},
+  {text: "FIRE", color: "#FB7B5C", position: [1.4, 4.2, 2.4], height: 0.55, at: T.fire, until: T.cStone},
+  {text: "KEEP", color: "#F4E58E", position: [0.2, 5.24, 0], height: 0.7, at: T.keep, until: T.cRam},
+  {text: "BATTERING RAM", color: "#FB7B5C", position: [6, 3.4, 0], height: 0.32, at: T.ram + 0.2, until: T.cGate},
+  {text: "PORTCULLIS", color: "#F4E58E", position: [3.8, 3.32, -0.1], height: 0.3, at: T.gate, until: T.holes},
+  {text: "MURDER HOLES", color: "#F4E58E", position: [3.8, 3.1, -0.1], height: 0.28, at: T.murder, until: T.cMine},
+  {text: "TUNNEL", color: "#FB7B5C", position: [3.4, 3.06, 3.7], height: 0.5, at: T.tunnels, until: T.prop},
+  {text: "WOOD PROPS", color: "#F4E58E", position: [3.5, 2.42, 3.7], height: 0.36, at: T.prop + 0.3, until: T.burning},
+  {text: "BURN THEM", color: "#FB7B5C", position: [3.5, 2.4, 3.7], height: 0.36, at: T.burning, until: T.cRoch},
+  {text: "1215", color: "#F1EDE2", position: [0.4, 4.16, 0], height: 0.8, at: T.y1215, until: T.corner},
+  {text: "ROCHESTER", color: "#F1EDE2", position: [2.6, 4.32, 2.6], height: 0.4, at: T.corner, until: T.cPigs},
+  {text: "FAT OF 40 PIGS", color: "#FB7B5C", position: [2.74, 1.6, 6.2], height: 0.26, at: T.fat, until: T.cRound},
+  {text: "ROUND TOWERS", color: "#F4E58E", position: [0.4, 5.26, 0], height: 0.5, at: T.round, until: T.cTower},
+  {text: "NO CORNER", color: "#F4E58E", position: [3.6, 3.9, 3.6], height: 0.36, at: T.noCorner, until: T.cWhy},
+  {text: "LADDERS", color: "#FB7B5C", position: [0, 4.02, 3.8], height: 0.42, at: T.ladders, until: T.cWalk},
+  {text: "STONE WALKWAY", color: "#F4E58E", position: [1.4, 3.6, 3.9], height: 0.28, at: T.walk, until: T.cBreach},
+  {text: "BREACH", color: "#FB7B5C", position: [0.94, 4.46, 3.6], height: 0.6, at: T.breach, until: T.cInner},
+  {text: "SECOND WALL", color: "#F4E58E", position: [0.4, 5.22, 0], height: 0.5, at: T.second, until: T.cArch},
+  {text: "ARCHERS", color: "#F1EDE2", position: [3.1, 5.32, -1.7], height: 0.5, at: T.archers, until: T.cConc},
+  {text: "CONCENTRIC CASTLE", color: "#F4E58E", position: [0.4, 5.42, 0], height: 0.5, at: T.concentric, until: T.cAdd},
+  {text: "MOAT", color: "#F1EDE2", position: [0.4, 6, 0], height: 0.8, at: T.moat, until: T.slits},
+  {text: "ARROW SLITS", color: "#F4E58E", position: [0.4, 6.04, 0], height: 0.65, at: T.slits, until: T.bridge},
+  {text: "DRAWBRIDGE", color: "#F4E58E", position: [0.4, 6.02, 0], height: 0.65, at: T.bridge, until: T.cEnd},
+];
+void MINE;

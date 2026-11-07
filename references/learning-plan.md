@@ -10,9 +10,9 @@ How this skill keeps improving from reel data. Update the status and log as phas
 | 4. Sound | Understand the effects layer | Voice separation, voice-silent event counts | `sound.md`, `gen_sfx.py` | First pass done |
 | 5. Camera depth | Measure poses beyond one reel | Solve hero, section and final poses on 5 more reels, test the bookend rule | Tighter yaw and pitch ranges | Next |
 | 6. Sound depth | Classify events by what causes them | Align effects with on-screen events, build a cause-to-sound table, user listening session | Sound table in `sound.md` | Next |
-| 7. Visual language | Catalogue reusable moves | Tag every shot in 5 reels by type, label use and prop motion | New primitives and patterns | Planned |
-| 8. Topic selection | Learn what to make | Pull 50+ reels across channels with retention data if available | Topic scoring rubric | Planned |
-| 9. Prove it | Test on original films | Make 3 original films, score each against the rubric | Side-by-side scores | Planned |
+| 7. Visual language | Catalogue reusable moves | Tag every shot in 5 reels by type, label use and prop motion | Character and effects kit, clarity rules | First pass done |
+| 8. Topic selection | Learn what to make | Pull 50+ reels across channels with retention data if available | Demand check in `topics.md` | First pass done |
+| 9. Prove it | Test on original films | Make 3 original films, score each against the rubric | Igloo, castle and well films in `examples/`. Scores still to do | In progress |
 | 10. Feedback loop | Learn from your own results | After each post, log hook rate, watch time and comment themes | A running log below | Planned |
 
 ## Limits of this dataset
@@ -24,3 +24,4 @@ How this skill keeps improving from reel data. Update the status and log as phas
 - 2026-11-07: Added line-one noun rule, hero opening and bookend, camera lint, sound patter system, automatic QC.
 - 2026-11-07: Clean-install test found Fish timing varies between runs and could cut off the ending. Added tempo fit in tts.mjs and two QC checks for it.
 - 2026-11-07: Split the skill from the workspace. Added voice and branding questions, the topics guide, and props for non-physical topics.
+- 2026-11-07: Made three original films. Added the character and effects kit, ground detail, `WorldCut`, the label gate, `plan.ts`, voice retries, the demand check and the clarity rules. Viewer feedback: capsule figures and pale palettes looked cheap, a sign panel for branding looked tacky, labels ran off the top. The kit film was judged a whole lot better.

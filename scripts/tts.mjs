@@ -34,9 +34,18 @@ const dur = (f) => parseFloat(execFileSync("ffprobe", ["-v", "error", "-show_ent
 const speak = async (speed) => {
   const body = {text: story.script, format: "wav", sample_rate: 44100, normalize: true, prosody: {speed, normalize_loudness: true}};
   if (voiceId !== "default") body.reference_id = voiceId;
-  const r = await fetch("https://api.fish.audio/v1/tts", {method: "POST", headers: {Authorization: `Bearer ${key}`, "Content-Type": "application/json", model: get("FISH_MODEL", "s2.1-pro-free")}, body: JSON.stringify(body)});
-  if (!r.ok) { console.error("Fish error", r.status, (await r.text()).slice(0, 200)); process.exit(1); }
-  fs.writeFileSync(raw, Buffer.from(await r.arrayBuffer()));
+  // Long reads sometimes lose the connection mid-download, so retry network failures. An API error is final.
+  for (let attempt = 1; ; attempt++) {
+    try {
+      const r = await fetch("https://api.fish.audio/v1/tts", {method: "POST", headers: {Authorization: `Bearer ${key}`, "Content-Type": "application/json", model: get("FISH_MODEL", "s2.1-pro-free")}, body: JSON.stringify(body)});
+      if (!r.ok) { console.error("Fish error", r.status, (await r.text()).slice(0, 200)); process.exit(1); }
+      fs.writeFileSync(raw, Buffer.from(await r.arrayBuffer()));
+      return;
+    } catch (e) {
+      if (attempt >= 4) throw e;
+      console.error(`Fish connection dropped, retry ${attempt} of 3`);
+    }
+  }
 };
 
 // Hit the target length, leaving 0.5s of tail after the last word.

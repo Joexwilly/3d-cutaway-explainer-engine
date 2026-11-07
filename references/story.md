@@ -26,5 +26,19 @@ It opened with a finished house and ended on "foundation". The opening joke only
 - Pick things people see daily, or survival fantasies. Any lane works: see `topics.md`.
 - Be accurate. Viewers correct mistakes, and "you forgot the floor" style comments are common.
 
+## Timing from words
+`W("word", n)` picks the nth time a word is spoken, counting from 0, in any case. Short words repeat, so print the word list first. These cost real bugs: `W("hang")` caught "hang a heavy gate" 30 seconds early, and `W("in")` moved a cut by 11 seconds. `sfx.json` uses `word#1` for the same reason.
+
+## Lint details
+Any "but" counts as a But, so "not a lake but sand" raises the count and asks for another So. Reword it.
+
+Buts must reach `seconds / 11`, and pace must stay inside 215 to 270 wpm. Adjust `seconds` first. A short script voiced to a long film sounds slow, so add a fact instead of stretching it.
+
+## Fact rules
+- Search every claim. Search again for anything the first search missed.
+- If a number will not verify, change the wording. "Killed hundreds" survived where an exact toll did not.
+- Tell the user which claims rest on weak sources.
+- Compressing history into one builder is the format. Note it, and do not claim one change had one cause.
+
 ## Short versions
 The reference never goes under 64 seconds. For a short cut, keep every beat and compress: under 30 seconds use 3 Buts, skip the vocabulary beat, keep `Add` and the close.

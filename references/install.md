@@ -55,3 +55,5 @@ Rendering uses software WebGL by default on Linux. To override, set `REMOTION_GL
 | `No voice chosen` | `voice_id` is empty | Set it in `cutaway.json` |
 | Fish returns 402 | Paid model on a free account | Use `s2.1-pro-free` |
 | Voice too long for the film | Script is long for `seconds` | Trim the script or raise `seconds` |
+| `TypeError: terminated` during voice | Connection dropped | Retries run automatically. Run `cutaway voice` again if it still fails |
+| `LABEL LINT FAILED` | A label leaves the safe area in some frame | Run `cutaway labels <slug> --fix` |

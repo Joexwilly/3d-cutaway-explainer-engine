@@ -25,6 +25,20 @@ Use these functions from `CameraRig.tsx`. See `assets/examples/`.
 | Low | `low(subject, dist)` | 24, 5 | Scale, height, vehicles |
 | Custom | `orbit(subject, {...})` | Your values | Only between the above |
 
+## 9:16 framing
+At the fixed lens, visible half-height is about `0.377 * dist` and half-width about `0.212 * dist`.
+
+- A subject wider than 6 units needs a hero distance over 15. Work it out before building.
+- Aim below the subject. Captions sit just under the frame center, so a target 1 to 2 units under the subject keeps it above them.
+- Tall subjects suit this frame. A deep shaft or tower can fill it, and a wide one cannot.
+- The lower half of a wide shot can turn into empty ground. Frame tighter, or put a cut face there.
+
+## Cuts must look like cuts
+QC counts a cut only when the picture changes strongly, with a mean difference over 25 out of 255. Two section shots of the same room at similar distances do not register, and a viewer feels them as one long static shot. Change distance a lot, change subject, or go outside and back. The igloo failed QC this way at 17.8s.
+
+## Labels and yaw
+Labels face +z. Above about 55 degrees of yaw they skew until they are hard to read. Stay under that when a label is on screen.
+
 ## Rules of thumb
 1. Open on `hero`, already moving. The subject sits back from the cut edge, so strata show diagonally across the lower third. Never open flat and frontal.
 2. Return to `hero` at the end, at nearly the same angle. The finished thing replaces the crude thing in the same frame.
