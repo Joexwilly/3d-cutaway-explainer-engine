@@ -47,7 +47,7 @@ cutaway sfx foundation
 cutaway render foundation
 ```
 
-Your stories, audio and renders stay in your folder. The skill itself is never edited. Three more full films ship as examples: `cutaway init my-videos --example=well`, `--example=castle` or `--example=igloo`.
+Your stories, audio and renders stay in your folder. The skill never stores them, and `cutaway` refuses to run a workspace inside it. Three more full films ship as examples: `cutaway init my-videos --example=well`, `--example=castle` or `--example=igloo`.
 
 ## How it stays consistent
 

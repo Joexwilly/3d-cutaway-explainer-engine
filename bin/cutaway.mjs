@@ -22,9 +22,11 @@ const remotion = path.join(RT, "node_modules/.bin/remotion");
 const hash = (f) => createHash("sha1").update(fs.readFileSync(f)).digest("hex");
 const pascal = (s) => s.split("-").map((p) => p[0].toUpperCase() + p.slice(1)).join("");
 
+const inSkill = (d) => d === SKILL || d.startsWith(SKILL + path.sep);
+const noWorkHere = (d) => { if (inSkill(d)) die(`This is the skill folder. User work never goes here. Choose a workspace outside ${SKILL}.`); };
 const findWS = () => {
   for (let d = process.cwd(); ; d = path.dirname(d)) {
-    if (fs.existsSync(path.join(d, "cutaway.json"))) return d;
+    if (fs.existsSync(path.join(d, "cutaway.json"))) { noWorkHere(d); return d; }
     if (d === path.dirname(d)) die('No cutaway.json here or above. Run "cutaway init <folder>" first.');
   }
 };
@@ -76,7 +78,7 @@ const cmds = {
     console.log(good ? "READY" : "NOT READY"); if (!good) process.exit(1);
   },
   init(dir = ".", ...rest) {
-    const ws = path.resolve(dir); fs.mkdirSync(path.join(ws, "stories"), {recursive: true}); fs.mkdirSync(path.join(ws, "output"), {recursive: true});
+    const ws = path.resolve(dir); noWorkHere(ws); fs.mkdirSync(path.join(ws, "stories"), {recursive: true}); fs.mkdirSync(path.join(ws, "output"), {recursive: true});
     const c = path.join(ws, "cutaway.json");
     if (!fs.existsSync(c)) fs.writeFileSync(c, JSON.stringify({voice_id: null, handle: null, setting: "yard"}, null, 2) + "\n");
     const g = path.join(ws, ".gitignore"); if (!fs.existsSync(g)) fs.writeFileSync(g, ".cutaway/\nnode_modules\noutput/review/\n");

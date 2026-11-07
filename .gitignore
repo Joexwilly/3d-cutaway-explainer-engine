@@ -10,3 +10,30 @@ __pycache__/
 out/
 public/
 dist/
+# User work never lives here. Stories, scripts, audio and renders stay in the user's workspace.
+stories/
+audio/
+output/
+.cutaway/
+cutaway.json
+*.mp4
+*.wav
+*.mp3
+# Examples and previews are a fixed list. Adding one means editing this file on purpose.
+examples/*
+!examples/foundation/
+!examples/igloo/
+!examples/castle/
+!examples/well/
+assets/preview/*
+!assets/preview/foundation.gif
+!assets/preview/well/
+assets/preview/well/*
+!assets/preview/well/f40.jpg
+!assets/preview/well/f190.jpg
+!assets/preview/well/f420.jpg
+!assets/preview/well/f740.jpg
+!assets/preview/well/f1080.jpg
+!assets/preview/well/f1400.jpg
+!assets/preview/well/f1700.jpg
+!assets/preview/well/f1979.jpg
