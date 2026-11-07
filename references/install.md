@@ -13,7 +13,7 @@ Allow about 2 GB of disk, more if Whisper must be installed.
 ## Steps
 1. Clone the skill. For Claude Code:
    ```bash
-   git clone https://github.com/<github-user>/3d-cutaway-explainer ~/.claude/skills/3d-cutaway-explainer
+   git clone https://github.com/Joexwilly/3d-cutaway-explainer-engine ~/.claude/skills/3d-cutaway-explainer
    ```
    Other agents can clone it anywhere and read `SKILL.md`.
 2. Run setup once:

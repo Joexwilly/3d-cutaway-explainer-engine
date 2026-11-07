@@ -19,7 +19,7 @@ Give an agent a topic and it writes the script, generates the voice, builds the 
 ## Install
 
 ```bash
-git clone https://github.com/<github-user>/3d-cutaway-explainer ~/.claude/skills/3d-cutaway-explainer
+git clone https://github.com/Joexwilly/3d-cutaway-explainer-engine ~/.claude/skills/3d-cutaway-explainer
 ~/.claude/skills/3d-cutaway-explainer/bin/cutaway setup
 ```
 
