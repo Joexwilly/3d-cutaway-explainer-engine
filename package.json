@@ -1,18 +1,24 @@
 {
-  "name": "cutaway-engine",
+  "name": "3d-cutaway-explainer",
   "version": "1.0.0",
-  "description": "My Remotion video",
+  "description": "Engine for 3D cutaway explainer reels",
   "repository": {},
-  "license": "UNLICENSED",
+  "license": "MIT",
   "engines": {
     "node": "^20.19.0 || ^22.13.0 || >=24"
   },
   "private": true,
   "dependencies": {
+    "@react-three/drei": "^10.7.9",
+    "@react-three/fiber": "^9.8.2",
     "@remotion/cli": "4.0.541",
+    "@remotion/google-fonts": "4.0.541",
+    "@remotion/three": "4.0.541",
+    "@types/three": "^0.187.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "remotion": "4.0.541"
+    "remotion": "4.0.541",
+    "three": "^0.187.0"
   },
   "devDependencies": {
     "@remotion/eslint-config-flat": "4.0.541",
@@ -23,10 +29,7 @@
     "typescript": "5.9.3"
   },
   "scripts": {
-    "dev": "remotion studio",
-    "build": "remotion bundle",
-    "upgrade": "remotion upgrade",
-    "lint": "eslint src && tsc"
+    "lint": "tsc"
   },
   "allowScripts": {
     "esbuild": false

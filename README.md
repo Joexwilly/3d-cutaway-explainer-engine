@@ -1,54 +1,69 @@
-# Remotion video
+# 3D Cutaway Explainer
+
+An agent skill and code engine for vertical 3D reels in the "How a [crude thing] Becomes a [finished thing]" format. It works for construction, engineering, software, money and any other system you can build up step by step.
+
+Give an agent a topic and it writes the script, generates the voice, builds the 3D world, plans the camera, adds sound and renders a checked MP4.
 
 <p align="center">
-  <a href="https://github.com/remotion-dev/logo">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-dark.apng">
-      <img alt="Animated Remotion Logo" src="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-light.gif">
-    </picture>
-  </a>
+  <img src="assets/preview/foundation.gif" width="240" alt="Example film: a pile of rocks becomes a foundation, from the first rocks falling to the finished cutaway">
 </p>
 
-Welcome to your Remotion project!
+<p align="center"><em>The example film in this repo: How a Pile of Rocks Becomes a Foundation. The real output is 1080×1920 with voice and sound.</em></p>
 
-## Commands
+## Shot examples
 
-**Install Dependencies**
+| Hero opening | Low tilt | Section | Macro | Hero ending |
+|---|---|---|---|---|
+| ![Three-quarter opening shot of rocks and a brick wall](assets/examples/01-hero-opening.jpg) | ![Low angle as the wall sinks into the ground](assets/examples/02-low-tilt.jpg) | ![Front section of steel piles reaching rock](assets/examples/03-section.jpg) | ![Close view of steel bars inside the slab](assets/examples/04-macro.jpg) | ![Final shot of the finished cutaway from the opening angle](assets/examples/05-hero-ending.jpg) |
 
-```console
-npm i --loglevel=error
+## Install
+
+```bash
+git clone https://github.com/<github-user>/3d-cutaway-explainer ~/.claude/skills/3d-cutaway-explainer
+~/.claude/skills/3d-cutaway-explainer/bin/cutaway setup
 ```
 
-**Start Preview**
+Add your Fish Audio key to `~/.config/3d-cutaway-explainer/.env`, or record your own voice. Other agents can clone this repo anywhere and read `SKILL.md`. Full details are in [references/install.md](references/install.md).
 
-```console
-npm run dev
+## Use
+
+Ask your agent: "Make a cutaway video about how a login form becomes a bank."
+
+Or drive it yourself from any folder:
+
+```bash
+cutaway init my-videos --example
+cd my-videos
+cutaway voice foundation
+cutaway sfx foundation
+cutaway render foundation
 ```
 
-**Render video**
+Your stories, audio and renders stay in your folder. The skill itself is never edited.
 
-```console
-npx remotion render
+## How it stays consistent
+
+| Gate | Blocks |
+|---|---|
+| Story lint | Scripts that break the format |
+| Camera lint | Flat openings, overly long shots, details hidden under captions, before any frame renders |
+| Video QC | Wrong length, cut-off voice, loudness and pacing problems |
+
+## Layout
+
+```
+SKILL.md           Workflow an agent follows
+bin/cutaway        Command line
+references/        Story, topics, camera, sound, world, install, research
+assets/examples/   Framing references from this engine's own renders
+src/engine/        Camera, captions, labels, stage, reusable props
+templates/         Starting point for each new story
+examples/          A complete example film
+scripts/           Voice, sound, lints and QC
 ```
 
-**Upgrade Remotion**
+## Licenses
 
-```console
-npx remotion upgrade
-```
+Code is [MIT](LICENSE). Third-party terms are in [NOTICE.md](NOTICE.md). Remotion has its own license: it is free for individuals and small teams, and larger companies need a paid license.
 
-## Docs
-
-Get started with Remotion by reading the [fundamentals page](https://www.remotion.dev/docs/the-fundamentals).
-
-## Help
-
-We provide help on our [Discord server](https://discord.gg/6VzzNDwUwV).
-
-## Issues
-
-Found an issue with Remotion? [File an issue here](https://github.com/remotion-dev/remotion/issues/new).
-
-## License
-
-Note that for some entities a company license is needed. [Read the terms here](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
+Use this for your own original topics and scripts.

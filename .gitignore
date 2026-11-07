@@ -1,7 +1,12 @@
-node_modules
-dist
+node_modules/
 .DS_Store
+__pycache__/
+*.log
+# Secrets never live in this repo. See references/install.md.
 .env
-
-# Ignore the output video from Git but not videos you import into src/.
-out
+.env.*
+!.env.example
+# Generated
+out/
+public/
+dist/
